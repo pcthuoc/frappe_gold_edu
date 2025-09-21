@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  base:
+    build:
+      context: .
+      dockerfile: ./base/Dockerfile
+    image: gold_edu/base
+    restart: unless-stopped
+    networks:
+      - frappe_network
+networks:
+  frappe_network:
+    driver: bridge

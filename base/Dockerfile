@@ -101,10 +101,10 @@ USER frappe
 
 FROM build AS builder
 
-ARG FRAPPE_BRANCH=version-15
-ARG FRAPPE_PATH=https://github.com/frappe/frappe
-ARG ERPNEXT_REPO=https://github.com/frappe/erpnext
-ARG ERPNEXT_BRANCH=version-15
+ARG FRAPPE_BRANCH=develop
+ARG FRAPPE_PATH=https://github.com/pcthuoc/frappe_gold_edu
+ARG LMS_REPO=https://github.com/pcthuoc/lms_gold_edu
+ARG LMS_BRANCH=develop
 RUN bench init \
   --frappe-branch=${FRAPPE_BRANCH} \
   --frappe-path=${FRAPPE_PATH} \
@@ -114,11 +114,11 @@ RUN bench init \
   --verbose \
   /home/frappe/frappe-bench && \
   cd /home/frappe/frappe-bench && \
-  bench get-app --branch=${ERPNEXT_BRANCH} --resolve-deps erpnext ${ERPNEXT_REPO} && \
+  bench get-app --branch=${LMS_BRANCH} --resolve-deps lms ${LMS_REPO} && \
   echo "{}" > sites/common_site_config.json && \
   find apps -mindepth 1 -path "*/.git" | xargs rm -fr
 
-FROM base AS erpnext
+FROM base AS lms
 
 USER frappe
 

@@ -4,12 +4,18 @@
 # mounted volume
 sites
 
+# Database data
+db-data/
+
+# Repository data
+repo/
+
 development/*
 !development/README.md
 !development/installer.py
 !development/apps-example.json
 !development/vscode-example/
-
+  
 # Pycharm
 .idea
 
